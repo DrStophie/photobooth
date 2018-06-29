@@ -37,7 +37,7 @@ class Capture(BoxLayout):
     state = StringProperty('idle')
     remaining = NumericProperty()
 
-    def start session(self, session):
+    def start_session(self, session):
         if self.state != 'idle':
                 Clock.unschedule(self._countdown)
         self.capture_session = session[:]
