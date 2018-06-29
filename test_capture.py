@@ -16,9 +16,9 @@ capture_state = [
 
 
 Builder.load_string("""
-
-#import clock
-#import smile_prompt __main__.smile_prompt
+#:import time time
+#:import capture_state __main__.capture_state
+#:import smile_prompt __main__.smile_prompt
 
 <Capture>
     BoxLayout:
@@ -40,13 +40,13 @@ class Capture(BoxLayout):
     def start_session(self, session):
         if self.state != 'idle':
                 Clock.unschedule(self._countdown)
-        self.capture_session = session[:]
+        self.random_smile_prompt = session[:]
         self._progress_session()
 
     def _progress_session(self):
         # retrieve the first state in the current session
         try:
-            item = self.workout_session.pop(0)
+            item = self.random_smile_prompt.pop(0)
         # session complete, return to idle state
         except IndexError:
             self.state = 'idle'
@@ -67,8 +67,7 @@ class Capture(BoxLayout):
 
 
 class PhotoboothApp(App):
-
     def build(self):
-        return Capture
+        return Capture()
 
 PhotoboothApp().run()
