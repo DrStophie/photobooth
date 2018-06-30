@@ -1,6 +1,6 @@
 from kivy.app import App
 from kivy.uix.boxlayout import BoxLayout
-from kivy.properties import ListProperty, NumericProperty, StringProperty
+from kivy.properties import ObjectProperty, ListProperty, NumericProperty, StringProperty
 from kivy.clock import Clock
 from kivy.lang import Builder
 from kivy.core.window import Window
@@ -11,8 +11,12 @@ smile_prompt = ['Get ready', 'Smile for the camera', 'Lookin good', 'Crazy eyes!
                'Shum Shlum Shlipiddy Dop!']
 
 capture_state = [
-    {'state': 'first_shot', 'time': 7},
+    {'state': 'first_shot', 'time': 6},
     {'state': 'additional_shot', 'time': 5},
+    {'state': 'second additional_shot', 'time': 5},
+    {'state': 'Good Job', 'time': 5},
+    {'state': 'prompt for number of copies', 'time': 5},
+    {'state': 'Printing', 'time': 2},
 ]
 
 

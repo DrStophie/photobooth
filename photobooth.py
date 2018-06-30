@@ -1,3 +1,4 @@
+import time
 import kivy
 kivy.require("1.9.0")
 
@@ -6,6 +7,10 @@ from kivy.lang import Builder
 from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.core.window import Window
+from kivy.properties import ObjectProperty, ListProperty, NumericProperty, StringProperty
+from kivy.core.image import Image
+
+
 
 Builder.load_string("""
 
@@ -34,18 +39,16 @@ Builder.load_string("""
             pos_hint: {"center_x": .5, "bottom": .2}
             on_press:
                 root.manager.current = "camera_flash"
-                root.manager.transition.direction = "down"
-                root.manager.transition.duration = 1
+                root.manager.transition.duration = 0
                 
 <CameraFlash>:
     BoxLayout:
-        Label:
-            text: "Here we go!"
-            color: 1, 1, 1, 1
-            size_hint_x: 1
-            size_hint_y: 1
-        
-
+        Widget:
+            canvas:
+                Rectangle:
+                    source:'flash.png'
+                    pos: self.pos
+                    size: self.size
 """)
 
 class ScreenOne(Screen):
@@ -55,13 +58,21 @@ class ScreenTwo(Screen):
     pass
 
 class CameraFlash(Screen):
-    pass
+    def __init__(self, **kwargs):
+        super(CameraFlash, self).__init__(**kwargs)
+
+        self.flash_delay()
+
+    def flash_delay(self,*args):
+        time.sleep(1)
+        self.parent.current = "screen_two"
 
 screen_manager = ScreenManager()
-
 screen_manager.add_widget(ScreenOne(name="screen_one"))
 screen_manager.add_widget(ScreenTwo(name="screen_two"))
 screen_manager.add_widget(CameraFlash(name="camera_flash"))
+
+
 
 class PhotoBooth(App):
 
