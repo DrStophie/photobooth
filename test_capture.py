@@ -3,6 +3,7 @@ from kivy.uix.boxlayout import BoxLayout
 from kivy.properties import ListProperty, NumericProperty, StringProperty
 from kivy.clock import Clock
 from kivy.lang import Builder
+from kivy.core.window import Window
 
 smile_prompt = ['Get ready', 'Smile for the camera', 'Lookin good', 'Crazy eyes!', 'Wild card',
                'Sexy time', 'Strike a pose', 'Go vogue', 'Good one! Now give me tiger',
@@ -69,5 +70,5 @@ class Capture(BoxLayout):
 class PhotoboothApp(App):
     def build(self):
         return Capture()
-
+Window.fullscreen = 'auto'
 PhotoboothApp().run()

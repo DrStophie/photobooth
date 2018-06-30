@@ -5,6 +5,7 @@ from kivy.app import App
 from kivy.lang import Builder
 from kivy.uix.floatlayout import FloatLayout
 from kivy.uix.screenmanager import ScreenManager, Screen
+from kivy.core.window import Window
 
 Builder.load_string("""
 
@@ -68,4 +69,5 @@ class PhotoBooth(App):
         return screen_manager
 
 if __name__ == "__main__":
+    Window.fullscreen = 'auto'
     PhotoBooth().run()
