@@ -26,7 +26,7 @@ Builder.load_string("""
         Label:
             text: root.state
         Label:
-            text: time.strftime('%H:%M:%S', time.gmtime(root.remaining))
+            text: time.strftime('%-S', time.gmtime(root.remaining))
         Button:
             text: "click me to take a pic"
             on_release: root.start_session(capture_state)
@@ -57,13 +57,13 @@ class Capture(BoxLayout):
         self.remaining = item['time']
         Clock.schedule_once(self._countdown, 1)
 
-    def _countdown(slef, *largs):
+    def _countdown(self, *largs):
         self.remaining -= 1
         if self.remaining <= 0:
             # proceed to next session
             self._progress_session()
         else:
-            Clock.scheudle_once(self._countdown, 1)
+            Clock.schedule_once(self._countdown, 1)
 
 
 class PhotoboothApp(App):
