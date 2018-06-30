@@ -38,17 +38,8 @@ Builder.load_string("""
             text: "Here's the countdown"
             pos_hint: {"center_x": .5, "bottom": .2}
             on_press:
-                root.manager.current = "camera_flash"
+                root.manager.current = "screen_one"
                 root.manager.transition.duration = 0
-                
-<CameraFlash>:
-    BoxLayout:
-        Widget:
-            canvas:
-                Rectangle:
-                    source:'flash.png'
-                    pos: self.pos
-                    size: self.size
 """)
 
 class ScreenOne(Screen):
@@ -57,20 +48,9 @@ class ScreenOne(Screen):
 class ScreenTwo(Screen):
     pass
 
-class CameraFlash(Screen):
-    def __init__(self, **kwargs):
-        super(CameraFlash, self).__init__(**kwargs)
-
-        self.flash_delay()
-
-    def flash_delay(self,*args):
-        time.sleep(1)
-        self.parent.current = "screen_two"
-
 screen_manager = ScreenManager()
 screen_manager.add_widget(ScreenOne(name="screen_one"))
 screen_manager.add_widget(ScreenTwo(name="screen_two"))
-screen_manager.add_widget(CameraFlash(name="camera_flash"))
 
 
 
